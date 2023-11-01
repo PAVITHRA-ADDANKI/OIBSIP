@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .container {
+            width: 300px;
+            margin: 0 auto;
+        }
+        input[type="text"], select, button {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Temperature Converter</h2>
+        <input type="text" id="temperatureInput" placeholder="Enter temperature" />
+        <select id="unit">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+        </select>
+        <button onclick="convertTemperature()">Convert</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function convertTemperature() {
+            const temperatureInput = document.getElementById('temperatureInput').value;
+            const unit = document.getElementById('unit').value;
+            const resultArea = document.getElementById('result');
+            let convertedTemperature;
+
+            if (isNaN(temperatureInput)) {
+                resultArea.innerHTML = 'Please enter a valid number.';
+                return;
+            }
+
+            const temperature = parseFloat(temperatureInput);
+
+            if (unit === 'celsius') {
+                convertedTemperature = (temperature * 9 / 5) + 32;
+                resultArea.innerHTML = `${temperature}°C is ${convertedTemperature.toFixed(2)}°F`;
+            } else {
+                convertedTemperature = (temperature - 32) * 5 / 9;
+                resultArea.innerHTML = `${temperature}°F is ${convertedTemperature.toFixed(2)}°C`;
+            }
+        }
+    </script>
+</body>
+
+</html>
